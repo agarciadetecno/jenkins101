@@ -12,10 +12,9 @@ pipeline {
             steps {
                 echo "Building.."
                 sh '''
-                cd myapp
-                mkdir myapp_venv
-                python3 -m venv /myapp_venv
-                . /myapp_venv/bin/activate
+                python3 -m venv /myapp/venv
+                . /myapp/venv/bin/activate
+                cd myapp             
                 pip install -r requirements.txt
                 '''
             }
@@ -24,9 +23,9 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                cd myapp
+                cd myapp/scripts
                 python3 hello.py
-                python3 hello.py --name=Brad
+                python3 hello.py --name=Abner
                 '''
             }
         }
